@@ -5,6 +5,36 @@ var assets = [
     "images/hat_ume.png",
 ];
 
+//(仮)スコア ... どこかで存在させる
+var score = 0;
+
+//(仮)みんなに呼んでもらうメソッド
+function showUI(scene) {
+  showScore(scene, "white", "24pt 'PixelMplus10'", score);
+}
+
+//内部
+function showScore(scene, color, font, score) {
+
+  var label = new Label();
+
+  label.color = color;
+  label.font = font;
+  label.width = scene.width;
+  label.textAlign = "right";
+
+  var sp = 10;
+  label.x = -sp;
+  label.y = +sp;
+
+  label.text = "SCORE: " + score;
+
+  scene.addChild(label);
+
+  return label;
+}
+
+
 function gameStart(){
     // ゲーム画面
     scene = new Scene();
@@ -71,6 +101,8 @@ function gameStart(){
         gameStart();
     }
 
+    showUI(scene);
+
 
     //敵 梅ちゃん の 移動テスト(1)
     function test1(obj) {
@@ -78,6 +110,7 @@ function gameStart(){
         obj.tl.then(function() {
           obj.x = scene.width;
           //test1(obj);
+          score++;
           gameStart();
         });
     }
@@ -93,6 +126,7 @@ function gameStart(){
         grp.tl.then(function() {
           grp.x = 0;
           //test2(grp, obj);
+          score++;
           gameStart();
         });
     }
@@ -127,6 +161,7 @@ function gameStart(){
       obj.tl.then(function() {
         obj.x = scene.width;
         //test3(obj, speed);
+        score++;
         gameStart();
       });
     }
