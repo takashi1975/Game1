@@ -34,27 +34,42 @@ function nextScene() {
     scene.backgroundColor = "black";
     core.replaceScene(scene);
 
-
-    var label = new Label();
-
-    label.color = "white";
-    label.font = "32pt 'PixelMplus10'";
-    label.width = scene.width;
-    label.textAlign = "center";
-
-    label.x = 0;
-    label.y = scene.height * 0.5 - (32 * 0.5); //32...フォントサイズ
-
-    label.text = "STAGE: " + (score + 1);
-
-    scene.addChild(label);
-
-
     //遅延して画面遷移
     scene.tl.delay(core.fps);
     scene.tl.then(function(){
       goNextScene();
     });
+
+    //ラベル表示
+    let text = "STAGE: " + (score + 1);
+    showLabel(text, 32);
+
+
+    //ラベル表示処理
+    function showLabel(text, fontSize) {
+      if (fontSize === void 0 /* undefined */) {
+        fontSize = 32;
+      }
+
+      if (text === void 0 /* undefined */) {
+        return;
+      }
+
+
+      var label = new Label();
+
+      label.color = "white";
+      label.font = fontSize + "pt 'PixelMplus10'";
+      label.width = scene.width;
+      label.textAlign = "center";
+
+      label.x = 0;
+      label.y = scene.height * 0.5 - (fontSize * 0.5);
+
+      label.text = text;
+
+      scene.addChild(label);
+    }
   }
 }
 
