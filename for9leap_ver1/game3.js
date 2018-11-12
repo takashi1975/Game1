@@ -43,9 +43,7 @@ function game3Main(scene) {
   scene.addChild(ume);
 
   ume.addEventListener(Event.TOUCH_START, function(e){
-    //TODO: 演出
-
-    //最後に (Retryボタン色指定も混み)
-    gameOver(scene, "lightgray", "white");
+    //ゲームオーバー
+    gameOver(scene, true);
   })
 }

@@ -65,11 +65,56 @@ function gameClear() {
   nextScene();
 }
 
-//ゲームオーバー
-function gameOver(scene, buttonColor, textColor) {
+//ゲームオーバー (半透明の黒を被せてみた)
+function gameOver(scene, isShowGameOver, buttonColor, textColor) {
+
+  //半透明
+  var layer = new Sprite(scene.width, scene.height);
+  layer.backgroundColor = "#00000080";
+  scene.addChild(layer);
+
+  //スコアを上書き
+  showUIScore(scene);
+
+  //ゲームオーバー 表記
+  if ((isShowGameOver != undefined) && (isShowGameOver == true)) {
+    showUIGameOverLabel("GAME OVER", 48, 12.5);
+  }
+
   //Retry?
   showUIRetry(scene, buttonColor, textColor);
+
+  //一時停止
   core.pause();
+
+
+  //ラベル表示
+  function showUIGameOverLabel(text, fontSize, dx) {
+
+    if (text === void 0 /* undefined */) {
+      text = "GAME OVER";
+    }
+
+    if (fontSize === void 0 /* undefined */) {
+      fontSize = 32;
+    }
+
+    if (dx === void 0 /* undefined */) {
+      dx = 0;
+    }
+
+    let label = new Label();
+    label.x = 0 + dx;
+    label.y = (scene.height - fontSize) * 0.5;
+    label.color = "#FFFFFF";
+    label.font = fontSize + "pt 'PixelMplus10'";
+
+    label.textWidth = scene.width;
+    label.textAlign = "center";
+    label.text = text;
+
+    scene.addChild(label);
+  }
 }
 
 
@@ -82,6 +127,7 @@ function titleStart(){
     nextScene();
   });
 }
+
 
 //==========
 // EnchantJS

@@ -42,9 +42,7 @@ function game2Main(scene) {
   scene.addChild(ume);
 
   ume.addEventListener(Event.TOUCH_START, function(e){
-    //TODO: 演出
-
-    //最後に
-    gameOver(scene);
+    //ゲームオーバー
+    gameOver(scene, true);
   })
 }

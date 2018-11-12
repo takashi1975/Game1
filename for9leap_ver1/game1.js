@@ -157,17 +157,7 @@ function game1Main(scene) {
   tanu.addEventListener(Event.COLLISION, function(){
     console.log("collision !!");
 
-    let label = new Label();
-    label.x = 0;
-    label.y = scene.height * 0.4;
-    label.text = "劇 終";
-    label.color = "#FFFFFF";
-    label.font = "64pt 'PixelMplus10'";
-
-    label.textWidth = scene.width;
-    label.textAlign = "center";
-    scene.addChild(label);
-
-    gameOver(scene);
+    //ゲームオーバー
+    gameOver(scene, true);
   });
 }
